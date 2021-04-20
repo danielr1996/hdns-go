@@ -8,25 +8,25 @@ import (
 
 const Endpoint = "https://dns.hetzner.com/api/v1"
 
-type client struct {
+type Client struct {
 	token      string
 	endpoint   string
 	httpClient http.Client
 }
 
-func NewClient() *client {
-	c := new(client)
+func NewClient() *Client {
+	c := new(Client)
 	c.httpClient = http.Client{}
 	c.endpoint = "https://dns.hetzner.com/api/v1"
 	return c
 }
 
-func (c client) WithToken(token string) client {
+func (c Client) WithToken(token string) Client {
 	c.token = token
 	return c
 }
 
-func (c client) WithEndpoint(endpoint string) client {
+func (c Client) WithEndpoint(endpoint string) Client {
 	c.endpoint = endpoint
 	return c
 }
@@ -35,7 +35,7 @@ type Response struct {
 	Zones []map[string]interface{} `json:"zones"`
 }
 
-func (c client) Zones() []map[string]interface{} {
+func (c Client) Zones() []map[string]interface{} {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/zones", c.endpoint), nil)
 	if err != nil {
 		fmt.Printf(err.Error())
@@ -54,7 +54,7 @@ func (c client) Zones() []map[string]interface{} {
 	return res.Zones
 }
 
-func (c client) AddRecord() []map[string]interface{} {
+func (c Client) AddRecord() []map[string]interface{} {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/zones", c.endpoint), nil)
 	if err != nil {
 		fmt.Printf(err.Error())
