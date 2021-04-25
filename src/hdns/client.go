@@ -3,6 +3,7 @@ package hdns
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -80,6 +81,29 @@ func (c Client) ZonesByName(name string) []map[string]interface{} {
 	}
 
 	return res.Zones
+}
+
+func (c Client) ZoneByName(name string) (map[string]interface{}, error) {
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/zones?name=%s", c.endpoint, name), nil)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+	req.Header.Add("Auth-API-Token", c.token)
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+	var res ZoneResponse
+	err = json.NewDecoder(resp.Body).Decode(&res)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+
+
+	if len(res.Zones) != 1 {
+		return nil, errors.New("No zones with name "+name+" found")
+	}
+	return res.Zones[0], nil
 }
 
 func (c Client) Records() []map[string]interface{} {
