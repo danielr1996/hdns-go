@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  test:
+    cmds:
+      - go test -v -coverprofile=coverage.out ./...
+  test:view:
+    cmds:
+      - go tool cover -html=coverage.out
+  fmt:
+

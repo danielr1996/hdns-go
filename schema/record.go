@@ -14,7 +14,7 @@ type Record struct {
 // RecordResponse represents a Record or multiple Records received from the Hetzner DNS API
 type RecordResponse struct {
 	Records []Record `json:"records,omitempty"`
-	Record Record `json:"record,omitempty"`
+	Record  Record   `json:"record,omitempty"`
 }
 
 //type RecordsSucess struct {

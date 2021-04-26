@@ -1,2 +1,4 @@
 src/main.go
 .idea/
+coverage.out
+main.go

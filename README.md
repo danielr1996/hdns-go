@@ -1,6 +1,8 @@
 # hdns-go
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/danielr1996/hdns-go.svg)](https://pkg.go.dev/github.com/danielr1996/hdns-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/danielr1996/hdns-go)](https://goreportcard.com/report/github.com/danielr1996/hdns-go)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/danielr1996/hdns-go?style=plastic)
 
 A Go library for the [Hetzner DNS API](https://dns.hetzner.com/api-docs/)
 
@@ -39,3 +41,9 @@ fmt.Println(res)
 // ...
 ```
 
+## Developing
+> `hdns-go` uses [Task](https://taskfile.dev/#/installation) to run the tests.
+>
+> Install Task or execute the commands listed in `Taskfile.yml` manually.
+
+To run the tests run `task test`, to view the coverage results run `task test:view`

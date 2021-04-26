@@ -29,7 +29,7 @@ func (c *ZoneClient) getAllByName(name string) ([]schema.Zone, error) {
 	if err != nil {
 		return nil, err
 	}
-	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399){
+	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399) {
 		return nil, errors.New(failure.Error.Message)
 	}
 	return success.Zones, err

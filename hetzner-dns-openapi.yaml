@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Hetzner DNS API
+  version: 1.1.1
+servers:
+  - url: https://dns.hetzner.com/api/v1/
+    description: Hetzner DNS API Endpoint
+paths:
+  /zones:
+    get:
+      summary: Returns paginated zones associated with the user. Limited to 100 zones per request.
+      responses:
+        '200':
+          description: Array of zones
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+
+                  zones:
+                    type: array
+
+
+components:
+  schemas:
+    Meta:
+      properties:
+        pagination:
+          type: object
+          properties:
+            last_page:
+              type: integer
+              format: int64
+              example: 1
+            page:
+              type: integer
+              format: int64
+              example: 1
+            per_page:
+              type: integer
+              format: int64
+              example: 1
+            total_entries:
+              type: integer
+              format: int64
+              example: 1

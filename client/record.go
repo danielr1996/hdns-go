@@ -36,13 +36,14 @@ func (c *RecordClient) GetById(id string) (schema.Record, error) {
 	}
 	return success.Record, err
 }
+
 // Create created a new Record in the Hetzner DNS API.
 // Allowed recordTypes are A, AAA, NS, MX, CNAME, RP, TXT, SOA, HINFO, SRV, DANE, TLSA, DS, CAA
-func (c *RecordClient) Create(name string, recordType string, value string, zoneId string)(schema.Record, error) {
+func (c *RecordClient) Create(name string, recordType string, value string, zoneId string) (schema.Record, error) {
 	body := &schema.Record{
-		Name: name,
-		Type: recordType,
-		Value: value,
+		Name:   name,
+		Type:   recordType,
+		Value:  value,
 		ZoneId: zoneId,
 	}
 	success := new(schema.RecordResponse)
@@ -51,18 +52,18 @@ func (c *RecordClient) Create(name string, recordType string, value string, zone
 	if err != nil {
 		return schema.Record{}, err
 	}
-	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399){
+	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399) {
 		return schema.Record{}, errors.New(failure.Error.Message)
 	}
 	return success.Record, nil
 }
 
 // Update updates a record in the Hetzner DNS API
-func (c *RecordClient) Update(name string, recordType string, value string, zoneId string, id string)(schema.Record, error) {
+func (c *RecordClient) Update(name string, recordType string, value string, zoneId string, id string) (schema.Record, error) {
 	body := &schema.Record{
-		Name: name,
-		Type: recordType,
-		Value: value,
+		Name:   name,
+		Type:   recordType,
+		Value:  value,
 		ZoneId: zoneId,
 	}
 	success := new(schema.RecordResponse)
@@ -71,7 +72,7 @@ func (c *RecordClient) Update(name string, recordType string, value string, zone
 	if err != nil {
 		return schema.Record{}, err
 	}
-	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399){
+	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399) {
 		return schema.Record{}, errors.New(failure.Error.Message)
 	}
 	return success.Record, nil
@@ -83,7 +84,7 @@ func (c *RecordClient) Delete(id string) error {
 	if err != nil {
 		return err
 	}
-	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399){
+	if !(resp.StatusCode >= 200 && resp.StatusCode <= 399) {
 		return errors.New(resp.Status)
 	}
 	return nil

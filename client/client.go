@@ -13,8 +13,8 @@ type Client struct {
 	token      string
 	endpoint   string
 	httpClient http.Client
-	Record *RecordClient
-	Zone *ZoneClient
+	Record     *RecordClient
+	Zone       *ZoneClient
 }
 
 // New instantiates a new Client for the Hetzner DNS API
@@ -22,6 +22,7 @@ func New() *Client {
 	c := new(Client)
 	c.httpClient = http.Client{}
 	c.endpoint = Endpoint
+	c.token = ""
 	c.Record = &RecordClient{Client: c}
 	c.Zone = &ZoneClient{Client: c}
 	return c
