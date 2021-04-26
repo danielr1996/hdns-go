@@ -8,4 +8,6 @@ tasks:
     cmds:
       - go tool cover -html=coverage.out
   fmt:
+    cmds:
+      - gofmt -s -w .
 
