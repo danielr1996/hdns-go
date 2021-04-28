@@ -17,14 +17,6 @@ type RecordResponse struct {
 	Record  Record   `json:"record,omitempty"`
 }
 
-//type RecordsSucess struct {
-//	Records []Record `json:"records"`
-//}
-//
-//type RecordSucess struct {
-//	Record Record `json:"record"`
-//}
-
 // RecordParams represents the query params that can be used to query Records from the Hetzner DNS API
 type RecordParams struct {
 	ZoneId  string `url:"zone_id,omitempty"`
